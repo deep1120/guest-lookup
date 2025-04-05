@@ -1,39 +1,36 @@
-// Google Sheets API URL
-const sheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf/values/Sheet1?key=AIzaSyCeba6xJZ9_S3z3KzWr5R7NBMnOkYeeugE";
+let guestData = [];
 
-// Fetch guest data from Google Sheets
-fetch(sheetUrl)
-    .then(response => response.json())
-    .then(data => {
-        const guests = data.values;
-        displayGuests(guests);
-    })
-    .catch(error => console.error("Error fetching data:", error));
-
-// Display guests in the list
-function displayGuests(guests) {
-    const guestList = document.getElementById("guest-list");
-    guestList.innerHTML = "";  // Clear the list before populating it
-
-    guests.forEach(guest => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `${guest[0]} - Table ${guest[1]}`;
-        guestList.appendChild(listItem);
+// Fetch the CSV from the Google Sheet
+fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf/pub?output=csv')
+  .then(response => response.text())
+  .then(csvData => {
+    Papa.parse(csvData, {
+      header: true, // Assuming the first row is the header
+      dynamicTyping: true,
+      complete: function(results) {
+        guestData = results.data;
+        displayGuests(guestData); // Initial display
+      }
     });
+  })
+  .catch(error => console.error('Error fetching CSV:', error));
+
+// Display the guests in the list
+function displayGuests(guests) {
+  const guestList = document.getElementById('guestList');
+  guestList.innerHTML = ''; // Clear the list before repopulating
+  guests.forEach(guest => {
+    const li = document.createElement('li');
+    li.textContent = `${guest['First Name']} ${guest['Last Name']} - Table ${guest['Table Number']}`;
+    guestList.appendChild(li);
+  });
 }
 
-// Search for guests by name
+// Search function
 function searchGuests() {
-    const query = document.getElementById("search-bar").value.toLowerCase();
-    const guestList = document.getElementById("guest-list");
-    const guests = guestList.getElementsByTagName("li");
-
-    Array.from(guests).forEach(guest => {
-        const guestName = guest.innerText.toLowerCase();
-        if (guestName.includes(query)) {
-            guest.style.display = "";
-        } else {
-            guest.style.display = "none";
-        }
-    });
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const filteredGuests = guestData.filter(guest => {
+    return guest['First Name'].toLowerCase().includes(input) || guest['Last Name'].toLowerCase().includes(input);
+  });
+  displayGuests(filteredGuests);
 }
