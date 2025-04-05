@@ -34,13 +34,16 @@ h1 {
 }
 
 /* Search Bar Styling */
+.search-container {
+    margin-bottom: 1.5rem; /* Space between search and results */
+}
+
 input[type="text"] {
     width: 100%;
     padding: 0.75rem;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
     background-color: #fff;
     transition: border-color 0.3s ease;
 }
