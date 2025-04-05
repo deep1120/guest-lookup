@@ -1,15 +1,17 @@
 window.onload = function() {
-    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf/pubhtml'; // Replace with your Google Sheet URL
+    console.log(Tabletop);  // This should log 'function Tabletop() {...}' if loaded correctly
+    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf/pubhtml';
 
     Tabletop.init({
         key: publicSpreadsheetUrl,
         callback: function(data, tabletop) {
-            console.log(data);  // This will log the entire data from the sheet
+            console.log(data);  // This will log the data from the sheet
             displayGuestList(data);
         },
         simpleSheet: true
     });
 };
+
 
 // Function to display the guest list in your table
 function displayGuestList(data) {
