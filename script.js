@@ -9,7 +9,7 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
       dynamicTyping: true,
       complete: function(results) {
         guestData = results.data;
-        displayGuests(guestData); // Initial display
+        displayGuests([]); // Initially display empty list
       }
     });
   })
@@ -19,18 +19,29 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
 function displayGuests(guests) {
   const guestList = document.getElementById('guestList');
   guestList.innerHTML = ''; // Clear the list before repopulating
-  guests.forEach(guest => {
-    const li = document.createElement('li');
-    li.textContent = `${guest['First Name']} ${guest['Last Name']} - Table ${guest['Table Number']}`;
-    guestList.appendChild(li);
-  });
+
+  if (guests.length > 0) {
+    guestList.style.display = 'block'; // Show the list if there are results
+    guests.forEach(guest => {
+      const li = document.createElement('li');
+      li.textContent = `${guest['First Name']} ${guest['Last Name']} - Table ${guest['Table Number']}`;
+      guestList.appendChild(li);
+    });
+  } else {
+    guestList.style.display = 'none'; // Hide the list if no results
+  }
 }
 
 // Search function
 function searchGuests() {
   const input = document.getElementById('searchInput').value.toLowerCase();
-  const filteredGuests = guestData.filter(guest => {
-    return guest['First Name'].toLowerCase().includes(input) || guest['Last Name'].toLowerCase().includes(input);
-  });
-  displayGuests(filteredGuests);
+  
+  if (input.length > 0) {
+    const filteredGuests = guestData.filter(guest => {
+      return guest['First Name'].toLowerCase().includes(input) || guest['Last Name'].toLowerCase().includes(input);
+    });
+    displayGuests(filteredGuests);
+  } else {
+    displayGuests([]); // Hide the list if no input is provided
+  }
 }
