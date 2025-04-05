@@ -1,8 +1,8 @@
 const guestList = [
-  { firstName: "Deep", lastName: "Shah", tableNumber: 5 },
-  { firstName: "Shivangi", lastName: "Patel", tableNumber: 3 },
-  { firstName: "Mansi", lastName: "Patel", tableNumber: 2 },
-  { firstName: "Riya", lastName: "Patel", tableNumber: 4 }
+  { firstName: "Deep", lastName: "Patel", tableNumber: 3 },
+  { firstName: "Shivangi", lastName: "Patel", tableNumber: 2 },
+  { firstName: "Riya", lastName: "Shah", tableNumber: 1 },
+  { firstName: "Mansi", lastName: "Dave", tableNumber: 19 }
 ];
 
 const searchInput = document.getElementById("searchInput");
