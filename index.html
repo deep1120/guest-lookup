@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guest Table Lookup</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Lookup</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="libs/tabletop.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Find Your Table</h1>
-    <input type="text" id="searchInput" placeholder="Search by name..." />
-    <ul id="results"></ul>
-  </div>
-<script src="libs/tabletop.js"></script>
-  <script src="script.js"></script>
+    <h1>Guest List Lookup</h1>
+    
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search by Name or Table Number..." onkeyup="filterGuests()">
+    
+    <table id="guestTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Table Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Guest data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
 </body>
 </html>
