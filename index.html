@@ -4,31 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest Lookup</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Guest List Lookup</h1>
-
-    <!-- Search Bar -->
-    <input type="text" id="searchInput" placeholder="Search by Name or Table Number..." onkeyup="filterGuests()">
-
-    <table id="guestTable">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Table Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Guest data will be inserted here dynamically -->
-        </tbody>
-    </table>
-
-    <!-- Load Tabletop.js first -->
-    <script type="text/javascript" src="libs/tabletop.min.js"></script>
-
-    <!-- Then load your custom script -->
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Guest Lookup</h1>
+        <input type="text" id="search-bar" placeholder="Search by name" onkeyup="searchGuests()">
+        <ul id="guest-list"></ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
