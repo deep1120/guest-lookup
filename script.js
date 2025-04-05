@@ -1,60 +1,54 @@
-window.onload = function() {
-    console.log(Tabletop);  // This should log 'function Tabletop() {...}' if loaded correctly
-    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf/pubhtml';
+// API key and Google Sheets details
+const apiKey = 'AIzaSyCeba6xJZ9_S3z3KzWr5R7NBMnOkYeeugE'; // Replace with your API Key
+const spreadsheetId = '2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAXyiY8T3RpfepZ11KxL_0j4FnjO8KwUE_cB1XpIgEyAi4ScTASWDYgDf'; // Replace with your Spreadsheet ID
+const range = 'Sheet1!A:C'; // Adjust the range if needed (e.g., 'Sheet1!A:C')
 
-    Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: function(data, tabletop) {
-            console.log(data);  // This will log the data from the sheet
-            displayGuestList(data);
-        },
-        simpleSheet: true
-    });
-};
+// Fetch data from Google Sheets API
+function fetchGuestData() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
 
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.values) {
+                const rows = data.values;
+                displayGuestList(rows);
+            } else {
+                console.error('No data found in Google Sheets');
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
 
-// Function to display the guest list in your table
-function displayGuestList(data) {
-    const tableBody = document.querySelector('tbody');  // Get the table body
-    tableBody.innerHTML = "";  // Clear any existing rows
+// Display the guest list
+function displayGuestList(guests) {
+    const guestList = document.getElementById('guest-list');
+    guestList.innerHTML = ''; // Clear any previous data
 
-    data.forEach(function(guest) {
-        const row = document.createElement('tr');
-
-        // Assuming your sheet columns are in the order: First Name, Last Name, Table Number
-        const firstNameCell = document.createElement('td');
-        firstNameCell.textContent = guest['First Name'];  // Replace with your column name
-        row.appendChild(firstNameCell);
-
-        const lastNameCell = document.createElement('td');
-        lastNameCell.textContent = guest['Last Name'];  // Replace with your column name
-        row.appendChild(lastNameCell);
-
-        const tableNumberCell = document.createElement('td');
-        tableNumberCell.textContent = guest['Table Number'];  // Replace with your column name
-        row.appendChild(tableNumberCell);
-
-        // Append the new row to the table body
-        tableBody.appendChild(row);
+    // Loop through the data and create list items
+    guests.forEach(guest => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${guest[0]} ${guest[1]}</span> - Table ${guest[2]}`;
+        guestList.appendChild(li);
     });
 }
 
-// Function to filter the guest list based on search input
-function filterGuests() {
-    const input = document.getElementById("searchInput");
-    const filter = input.value.toLowerCase();
-    const rows = document.querySelectorAll("tbody tr");
+// Search for guests
+function searchGuests() {
+    const query = document.getElementById('search-bar').value.toLowerCase();
+    const guestList = document.getElementById('guest-list');
+    const guests = guestList.getElementsByTagName('li');
 
-    rows.forEach(function(row) {
-        const firstName = row.cells[0].textContent.toLowerCase();
-        const lastName = row.cells[1].textContent.toLowerCase();
-        const tableNumber = row.cells[2].textContent.toLowerCase();
-
-        // Show or hide rows based on search match
-        if (firstName.includes(filter) || lastName.includes(filter) || tableNumber.includes(filter)) {
-            row.style.display = "";
+    // Loop through the guests and hide those who don't match the search query
+    Array.from(guests).forEach(guest => {
+        const guestName = guest.innerText.toLowerCase();
+        if (guestName.includes(query)) {
+            guest.style.display = '';
         } else {
-            row.style.display = "none";
+            guest.style.display = 'none';
         }
     });
 }
+
+// Call the function to fetch data when the page loads
+document.addEventListener('DOMContentLoaded', fetchGuestData);
