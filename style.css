@@ -14,6 +14,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 1rem;
 }
 
 /* Main Container */
@@ -26,6 +27,7 @@ body {
     width: 100%;
     max-width: 500px;
     margin: 1rem;
+    overflow: hidden;
 }
 
 /* Header Styling */
@@ -62,6 +64,9 @@ ul {
     padding: 0;
     margin-top: 1rem;
     text-align: left;
+    height: 300px; /* Fixed height */
+    overflow-y: auto; /* Scrollable if the content overflows */
+    margin-bottom: 0;
 }
 
 /* Individual List Items */
