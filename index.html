@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest Lookup</title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="libs/tabletop.min.js"></script>
 </head>
 <body>
     <h1>Guest List Lookup</h1>
-    
+
     <!-- Search Bar -->
     <input type="text" id="searchInput" placeholder="Search by Name or Table Number..." onkeyup="filterGuests()">
-    
+
     <table id="guestTable">
         <thead>
             <tr>
@@ -26,6 +25,10 @@
         </tbody>
     </table>
 
+    <!-- Load Tabletop.js first -->
+    <script type="text/javascript" src="libs/tabletop.min.js"></script>
+
+    <!-- Then load your custom script -->
     <script src="script.js"></script>
 </body>
 </html>
