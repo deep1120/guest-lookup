@@ -18,29 +18,32 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
 // Display the guests in the list
 function displayGuests(guests) {
   const guestList = document.getElementById('guestList');
-  guestList.innerHTML = ''; // Clear the list before repopulating
+  guestList.innerHTML = ''; // Clear the list
 
-  if (guests.length > 0) {
-    guestList.style.display = 'block';
-    guests.forEach(guest => {
-      const li = document.createElement('li');
-
-      const nameSpan = document.createElement('span');
-      nameSpan.className = 'guest-name';
-      nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
-
-      const tableSpan = document.createElement('span');
-      tableSpan.className = 'table-number';
-      tableSpan.textContent = `Table ${guest['Table Number']}`;
-
-      li.appendChild(nameSpan);
-      li.appendChild(tableSpan);
-      guestList.appendChild(li);
-    });
-  } else {
+  if (guests.length === 0) {
     guestList.style.display = 'none';
+    return;
   }
+
+  guestList.style.display = 'block';
+
+  guests.forEach(guest => {
+    const li = document.createElement('li');
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
+
+    const tableSpan = document.createElement('span');
+    tableSpan.textContent = `Table ${guest['Table Number']}`;
+    tableSpan.style.fontWeight = 'bold';
+
+    li.appendChild(nameSpan);
+    li.appendChild(tableSpan);
+
+    guestList.appendChild(li);
+  });
 }
+
 
 
 // Search function
