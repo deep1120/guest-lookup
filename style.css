@@ -59,40 +59,35 @@ input[type="text"]:focus {
 }
 
 /* Guest List Styling */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-    text-align: left;
-    height: 300px; /* Fixed height */
-    overflow-y: auto; /* Scrollable if the content overflows */
-    margin-bottom: 0;
+#guestList {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  border-top: 1px solid #eee;
 }
 
 /* Individual List Items */
 li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem;
-    border-bottom: 1px solid #eee;
-    font-size: 1rem;
-    color: #555;
-    transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  color: #555;
+  transition: background-color 0.3s ease;
 }
 
-li span.guest-name {
-    font-weight: 500;
-    flex: 1;
-    text-align: left;
+li:hover {
+  background-color: #f9f9f9;
 }
 
-li span.table-number {
-    color: #4CAF50;
-    font-weight: bold;
-    min-width: 80px;
-    text-align: right;
+li:last-child {
+  border-bottom: none;
 }
+
 
 
 /* Mobile Responsiveness */
