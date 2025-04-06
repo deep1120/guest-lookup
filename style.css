@@ -71,6 +71,9 @@ ul {
 
 /* Individual List Items */
 li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.75rem;
     border-bottom: 1px solid #eee;
     font-size: 1rem;
@@ -78,15 +81,19 @@ li {
     transition: background-color 0.3s ease;
 }
 
-/* Hover Effect for List Items */
-li:hover {
-    background-color: #f9f9f9;
+li span.guest-name {
+    font-weight: 500;
+    flex: 1;
+    text-align: left;
 }
 
-/* Last List Item - No Bottom Border */
-li:last-child {
-    border-bottom: none;
+li span.table-number {
+    color: #4CAF50;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: right;
 }
+
 
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
