@@ -154,13 +154,3 @@ li:last-child {
   max-width: 150px;
   margin-bottom: 1rem;
 }
-
-.column-titles {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  padding: 0 0.75rem;
-  color: #333;
-}
-
