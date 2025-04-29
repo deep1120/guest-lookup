@@ -5,11 +5,11 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
   .then(response => response.text())
   .then(csvData => {
     Papa.parse(csvData, {
-      header: true, // Assuming the first row is the header
+      header: true,
       dynamicTyping: true,
       complete: function(results) {
         guestData = results.data;
-        displayGuests([]); // Initially display empty list
+        displayGuests([]);
       }
     });
   })
@@ -18,7 +18,7 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
 // Display the guests in the list
 function displayGuests(guests) {
   const guestList = document.getElementById('guestList');
-  guestList.innerHTML = ''; // Clear the list
+  guestList.innerHTML = '';
 
   if (guests.length === 0) {
     guestList.style.display = 'none';
@@ -30,21 +30,28 @@ function displayGuests(guests) {
   guests.forEach(guest => {
     const li = document.createElement('li');
 
+    const sideSpan = document.createElement('span');
+    sideSpan.classList.add('guest-side');
+    sideSpan.textContent = `${guest['Side']}`;
+
     const nameSpan = document.createElement('span');
-    nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
+    nameSpan.textContent = ` – ${guest['First Name']} ${guest['Last Name']}`;
 
     const tableSpan = document.createElement('span');
     tableSpan.textContent = `Table ${guest['Table Number']}`;
     tableSpan.style.fontWeight = 'bold';
 
-    li.appendChild(nameSpan);
+    const leftWrapper = document.createElement('div');
+    leftWrapper.classList.add('guest-name-wrap');
+    leftWrapper.appendChild(sideSpan);
+    leftWrapper.appendChild(nameSpan);
+
+    li.appendChild(leftWrapper);
     li.appendChild(tableSpan);
 
     guestList.appendChild(li);
   });
 }
-
-
 
 // Search function
 function searchGuests() {
@@ -56,6 +63,6 @@ function searchGuests() {
     });
     displayGuests(filteredGuests);
   } else {
-    displayGuests([]); // Hide the list if no input is provided
+    displayGuests([]);
   }
 }
