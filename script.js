@@ -56,6 +56,7 @@ function displayGuests(guests) {
 }
 
 
+
 // Search function
 function searchGuests() {
   const input = document.getElementById('searchInput').value.toLowerCase();
