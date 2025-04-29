@@ -104,3 +104,15 @@ li:last-child {
         font-size: 0.9rem;
     }
 }
+
+.guest-side {
+  font-weight: 600;
+  color: #4CAF50; /* Green, change to match your color theme */
+}
+
+.guest-name-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
