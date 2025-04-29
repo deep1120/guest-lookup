@@ -116,3 +116,43 @@ li:last-child {
   align-items: center;
 }
 
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  color: #555;
+  transition: background-color 0.3s ease;
+  gap: 1rem;
+}
+
+.guest-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.guest-side {
+  font-weight: 600;
+  color: #4CAF50;
+  min-width: 60px;
+  text-align: left;
+}
+
+.guest-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.guest-table {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
