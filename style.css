@@ -149,3 +149,9 @@ li:last-child {
     font-size: 0.85rem;
   }
 }
+
+.logo {
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
