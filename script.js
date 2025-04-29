@@ -30,21 +30,23 @@ function displayGuests(guests) {
   guests.forEach(guest => {
     const li = document.createElement('li');
 
+    const leftWrapper = document.createElement('div');
+    leftWrapper.classList.add('guest-left');
+
     const sideSpan = document.createElement('span');
     sideSpan.classList.add('guest-side');
-    sideSpan.textContent = `${guest['Side']}`;
+    sideSpan.textContent = guest['Side'];
 
     const nameSpan = document.createElement('span');
-    nameSpan.textContent = ` – ${guest['First Name']} ${guest['Last Name']}`;
+    nameSpan.classList.add('guest-name');
+    nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
 
-    const tableSpan = document.createElement('span');
-    tableSpan.textContent = `Table ${guest['Table Number']}`;
-    tableSpan.style.fontWeight = 'bold';
-
-    const leftWrapper = document.createElement('div');
-    leftWrapper.classList.add('guest-name-wrap');
     leftWrapper.appendChild(sideSpan);
     leftWrapper.appendChild(nameSpan);
+
+    const tableSpan = document.createElement('span');
+    tableSpan.classList.add('guest-table');
+    tableSpan.textContent = `Table ${guest['Table Number']}`;
 
     li.appendChild(leftWrapper);
     li.appendChild(tableSpan);
@@ -52,6 +54,7 @@ function displayGuests(guests) {
     guestList.appendChild(li);
   });
 }
+
 
 // Search function
 function searchGuests() {
