@@ -18,33 +18,27 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
 // Display guests
 function displayGuests(guests) {
   const guestList = document.getElementById('guestList');
-  const columnHeaders = document.getElementById('columnHeaders');
-
-  guestList.innerHTML = '';
+  guestList.innerHTML = ''; // Clear the list
 
   if (guests.length === 0) {
     guestList.style.display = 'none';
-    columnHeaders.style.display = 'none';
     return;
   }
 
   guestList.style.display = 'block';
-  columnHeaders.style.display = 'flex';
 
   guests.forEach(guest => {
     const li = document.createElement('li');
 
     const sideSpan = document.createElement('span');
-    sideSpan.className = 'cell-side';
     sideSpan.textContent = guest['Side'];
 
     const nameSpan = document.createElement('span');
-    nameSpan.className = 'cell-name';
     nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
 
     const tableSpan = document.createElement('span');
-    tableSpan.className = 'cell-table';
-    tableSpan.textContent = `${guest['Table Number']}`;
+    tableSpan.textContent = guest['Table Number']; // No "Table" label
+    tableSpan.style.fontWeight = 'bold';
 
     li.appendChild(sideSpan);
     li.appendChild(nameSpan);
@@ -53,6 +47,7 @@ function displayGuests(guests) {
     guestList.appendChild(li);
   });
 }
+
 
 // Search function
 function searchGuests() {
