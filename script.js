@@ -59,13 +59,15 @@ function searchGuests() {
   const input = document.getElementById('searchInput').value.toLowerCase().trim();
 
   if (input.length > 0) {
-    // Only search by First Name
+    // Only search by First Name and exact match
     const filteredGuests = guestData.filter(guest => {
-      return guest['First Name'].toLowerCase().includes(input);
+      // Match the full first name (exact match)
+      return guest['First Name'].toLowerCase().startsWith(input);
     });
     displayGuests(filteredGuests);
   } else {
     displayGuests([]);
   }
 }
+
 
