@@ -1,74 +1,101 @@
 /* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body Styling */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f0f4f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
 }
 
 /* Main Container */
 .container {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-    margin: 1rem;
-    overflow: hidden;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
 }
 
-/* Header Styling */
+/* Header */
 h1 {
-    margin-bottom: 1rem;
-    color: #333;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
-/* Search Bar Styling */
+/* Search */
 .search-container {
-    margin-bottom: 1.5rem; /* Space between search and results */
+  margin-bottom: 1rem;
 }
 
 input[type="text"] {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    transition: border-color 0.3s ease;
-    margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+  margin-bottom: 1rem;
 }
 
-/* Focus Effect for Search Bar */
 input[type="text"]:focus {
-    outline: none;
-    border-color: #4CAF50;
+  outline: none;
+  border-color: #4CAF50;
 }
 
-/* Guest List Styling */
+/* Column Headers */
+.column-headers {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.column-headers span {
+  white-space: nowrap;
+}
+
+.header-side {
+  min-width: 60px;
+  text-align: left;
+}
+
+.header-name {
+  flex: 1;
+  margin-left: 0.5rem;
+  text-align: left;
+}
+
+.header-table {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Guest List */
 #guestList {
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
+  margin-top: 0;
   max-height: 300px;
   overflow-y: auto;
-  border-top: 1px solid #eee;
 }
 
-/* Individual List Items */
+/* Guest List Items */
 li {
   display: flex;
   justify-content: space-between;
@@ -88,68 +115,37 @@ li:last-child {
   border-bottom: none;
 }
 
-
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-    .container {
-        padding: 1.5rem;
-    }
-
-    input[type="text"] {
-        font-size: 0.9rem;
-    }
-
-    li {
-        font-size: 0.9rem;
-    }
-}
-
-.guest-side {
-  font-weight: 600;
-  color: #4CAF50; /* Green, change to match your color theme */
-}
-
-.guest-name-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem;
-  border-bottom: 1px solid #eee;
-  font-size: 1rem;
-  color: #555;
-  transition: background-color 0.3s ease;
-  gap: 1rem;
-}
-
-.guest-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 0;
-  flex: 1;
-  overflow: hidden;
-}
-
-.guest-side,
-.guest-name,
-.guest-table {
-  font-weight: normal;
-  color: #555;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.guest-side {
+.cell-side {
   min-width: 60px;
   text-align: left;
 }
 
+.cell-name {
+  flex: 1;
+  margin-left: 0.5rem;
+  text-align: left;
+}
 
+.cell-table {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.9rem;
+  }
+
+  li {
+    font-size: 0.9rem;
+  }
+
+  .column-headers {
+    font-size: 0.85rem;
+  }
+}
