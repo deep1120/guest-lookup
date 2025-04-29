@@ -58,13 +58,14 @@ function displayGuests(guests) {
 function searchGuests() {
   const input = document.getElementById('searchInput').value.toLowerCase().trim();
 
-
   if (input.length > 0) {
+    // Only search by First Name
     const filteredGuests = guestData.filter(guest => {
-      return guest['First Name'].toLowerCase().includes(input) || guest['Last Name'].toLowerCase().includes(input);
+      return guest['First Name'].toLowerCase().includes(input);
     });
     displayGuests(filteredGuests);
   } else {
     displayGuests([]);
   }
 }
+
