@@ -15,52 +15,49 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGuMnAPk-T3UDF4VOPzpPuAX
   })
   .catch(error => console.error('Error fetching CSV:', error));
 
-// Display the guests in the list
+// Display guests
 function displayGuests(guests) {
   const guestList = document.getElementById('guestList');
+  const columnHeaders = document.getElementById('columnHeaders');
+
   guestList.innerHTML = '';
 
   if (guests.length === 0) {
     guestList.style.display = 'none';
+    columnHeaders.style.display = 'none';
     return;
   }
 
   guestList.style.display = 'block';
+  columnHeaders.style.display = 'flex';
 
   guests.forEach(guest => {
     const li = document.createElement('li');
 
-    const leftWrapper = document.createElement('div');
-    leftWrapper.classList.add('guest-left');
-
     const sideSpan = document.createElement('span');
-    sideSpan.classList.add('guest-side');
+    sideSpan.className = 'cell-side';
     sideSpan.textContent = guest['Side'];
 
     const nameSpan = document.createElement('span');
-    nameSpan.classList.add('guest-name');
+    nameSpan.className = 'cell-name';
     nameSpan.textContent = `${guest['First Name']} ${guest['Last Name']}`;
 
-    leftWrapper.appendChild(sideSpan);
-    leftWrapper.appendChild(nameSpan);
-
     const tableSpan = document.createElement('span');
-    tableSpan.classList.add('guest-table');
-    tableSpan.textContent = `Table ${guest['Table Number']}`;
+    tableSpan.className = 'cell-table';
+    tableSpan.textContent = `${guest['Table Number']}`;
 
-    li.appendChild(leftWrapper);
+    li.appendChild(sideSpan);
+    li.appendChild(nameSpan);
     li.appendChild(tableSpan);
 
     guestList.appendChild(li);
   });
 }
 
-
-
 // Search function
 function searchGuests() {
   const input = document.getElementById('searchInput').value.toLowerCase();
-  
+
   if (input.length > 0) {
     const filteredGuests = guestData.filter(guest => {
       return guest['First Name'].toLowerCase().includes(input) || guest['Last Name'].toLowerCase().includes(input);
